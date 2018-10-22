@@ -1,0 +1,16 @@
+{
+  "name": "c3-eos-transfer-events",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "demu": "^0.3.0",
+    "demux-eos": "^2.0.0"
+  }
+}
