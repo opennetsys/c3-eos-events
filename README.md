@@ -1,24 +1,28 @@
-# c3-eos-transfer-events
+# c3-eos-events
 
-> Watch for EOS token transfer events
+> Watch for [EOS](https://github.com/EOSIO/eos) contract events
 
 ## Install
 
 ```bash
-npm i c3-eos-transfer-events
+npm i c3-eos-events
 ```
 
 ## Getting started
 
 ```js
-const { Watcher } = require('c3-eos-transfer-events')
+const { Watcher } = require('c3-eos-events')
 
 const watcher = new Watcher({
-  nodeUrl: 'http://localhost:8888',
-  startingBlock: 0
+  nodeUrl: 'http://localhost:8888'
 })
 
-watcher.watch()
+watcher.watch({
+  action: 'eosio.token::transfer',
+  startingBlock: 0
+}, (state, payload, blockInfo, context) => {
+  console.info('State updated:\n', JSON.stringify(state, null, 2))
+})
 ```
 
 Output

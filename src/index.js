@@ -2,12 +2,22 @@ const { BaseActionWatcher } = require("demux")
 const { NodeosActionReader } = require("demux-eos") // eslint-disable-line
 const ObjectActionHandler = require("./ObjectActionHandler")
 const updaters = require("./updaters")
-const effects = require("./effects")
 
 class Watcher {
   constructor(config) {
-    const nodeUrl = config.nodeUrl || "http://localhost:8888"
-    const startingBlock = config.startingBlock || 0
+    this.nodeUrl = config.nodeUrl || "http://localhost:8888"
+  }
+
+  watch(opts, cb) {
+    const startingBlock = opts.startingBlock || 0
+    const action = opts.action || "eosio.token::transfer"
+
+    const effects = [
+      {
+        actionType: action,
+        effect: cb,
+      }
+    ]
 
     const actionHandler = new ObjectActionHandler(
       updaters,
@@ -15,7 +25,7 @@ class Watcher {
     )
 
     const actionReader = new NodeosActionReader(
-      nodeUrl,
+      this.nodeUrl,
       startingBlock,
     )
 
@@ -25,11 +35,7 @@ class Watcher {
       500,
     )
 
-    this.actionWatcher = actionWatcher
-  }
-
-  watch() {
-    this.actionWatcher.watch()
+    actionWatcher.watch()
   }
 }
 

@@ -1,16 +1,27 @@
 {
-  "name": "c3-eos-transfer-events",
+  "name": "c3-eos-events",
   "version": "0.0.1",
-  "description": "",
+  "description": "Watch for EOS token transfer events",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "npm test"
   },
-  "author": "",
   "license": "MIT",
+  "author": "Miguel Mota <hello@miguelmota.com> (https://miguelmota.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/c3systems/c3-eos-transfer-events"
+  },
+  "bugs": {
+    "url": "https://github.com/c3systems/c3-eos-transfer-events/issues"
+  },
+  "homepage": "https://github.com/c3systems/c3-eos-transfer-events",
   "dependencies": {
     "demu": "^0.3.0",
     "demux-eos": "^2.0.0"
+  },
+  "devDependencies": {
+    "tape": "^3.0.3"
   }
 }
